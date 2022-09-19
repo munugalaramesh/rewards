@@ -20,7 +20,7 @@ Solution :
   4. Lets create the Customer by accessing POST -/Customer API using Swagger
   5. Add transactions to the created Customer using POST - /Customer/transactions
      5.1 ) Allowed to add both customername, amount and the date of the transaction (To support different years)
-  6. Get All Customers with Monthly Rewards along with Yearly total.   
+  6. Get All Customers with Monthly Rewards, Yearly  and total.   
 
 
 Swagger API
