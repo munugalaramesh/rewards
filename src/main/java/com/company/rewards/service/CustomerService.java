@@ -37,16 +37,24 @@ public class CustomerService {
 
 	public List<Rewards> getAll() throws ApplicationException {
 		List<Rewards> rewards = mapToReward(customerRepository.groupByMonthAndCustomer());
+		Map<String,List<Rewards>> groubyByCustomerName = CollectionUtils.asStream(rewards).collect(Collectors.groupingBy(Rewards :: getName));
 		Map<String, Map<String, List<Rewards>>> groupBy = CollectionUtils.asStream(rewards).collect(Collectors.groupingBy(Rewards :: getName,
 													        Collectors.groupingBy(Rewards :: getGroupByYear)));
+		rewards.forEach(f->f.setTotalRewards(getTotalRewards(f,groubyByCustomerName)));
 		rewards.forEach(f -> f.setYearlyRewards(getYearCount(f,groupBy)));
 		return rewards;
 	}
 	
+	private BigDecimal getTotalRewards(Rewards reward,Map<String, List<Rewards>> groubyByCustomerName) {
+		return CollectionUtils.asStream(groubyByCustomerName.get(reward.getName())).map(r ->r.rewards).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+	}
+
 	public List<Rewards> getRewardsByUser(String customerName) {
 		List<Rewards> rewards = mapToReward(customerRepository.groupByMonthAndCustomerUsingCustomerName(customerName));
 		Map<String, Map<String, List<Rewards>>> groupBy = CollectionUtils.asStream(rewards).collect(Collectors.groupingBy(Rewards :: getName,
 		        Collectors.groupingBy(Rewards :: getGroupByYear)));
+		Map<String,List<Rewards>> groubyByCustomerName = CollectionUtils.asStream(rewards).collect(Collectors.groupingBy(Rewards :: getName)); 
+		rewards.forEach(f->f.setTotalRewards(getTotalRewards(f,groubyByCustomerName)));
 		rewards.forEach(f -> f.setYearlyRewards(getYearCount(f,groupBy)));
 		return rewards;
 	}
