@@ -36,8 +36,8 @@ http://localhost:8080/rewards/h2
 	rwmanagement
 	rwmanagement
 	
-H2 DB Configuration 
-==================
+**Note : **
+
 I have added the ddl-auto as create-drop, so all the data will be removed on app restart
 
 Services 
