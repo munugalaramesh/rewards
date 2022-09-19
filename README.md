@@ -17,8 +17,8 @@ Solution :
   1. Run the application as Spring Boot Application / Deploy in Tomcat.
   2. Application will be running on 8080, Access Swagger API using http://localhost:8080/rewards/swagger-ui/index.html
   3. Application will be started with DB schema with empty Data.
-  4. Lets create the Customer by accessing POST -/Customer API using Swagger
-  5. Add transactions to the created Customer using POST - /Customer/transactions
+  4. Lets create the Customer by accessing POST -/customer API using Swagger
+  5. Add transactions to the created Customer using POST - /customer/transactions
      5.1 ) Allowed to add both customername, amount and the date of the transaction (To support different years)
   6. Get All Customers with Monthly Rewards, Yearly  and total.   
 
@@ -46,10 +46,10 @@ Services
 
 Added 4 services to to manage customers and rewards.
 
-GET - /Customer - To get All the customers with Monthly Rewards and Yearly
+GET - /customer - To get All the customers with Monthly Rewards and Yearly
 
-GET -/Customer/{name} - To get individual user rewards
+GET -/customer/{name} - To get individual user rewards
 
-POST -/Customer - To create new customer into the system
+POST -/customer - To create new customer into the system
 
-POST - /Customer/transactions - To create transactions for a customer.
+POST - /customer/transactions - To create transactions for a customer.
