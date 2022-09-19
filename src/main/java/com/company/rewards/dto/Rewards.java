@@ -1,10 +1,13 @@
 package com.company.rewards.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Rewards {
+public class Rewards implements Serializable{
 	
-	 public String name;
+	private static final long serialVersionUID = 5156104522654948954L;
+
+	public String name;
 	
 	public String groupByMonth;
 	
@@ -12,9 +15,22 @@ public class Rewards {
 	
 	public BigDecimal rewards;
 	
+	public BigDecimal totalRewards;
+	
 	public BigDecimal yearlyRewards;
 	
-	
+
+	public Rewards(String name, String groupByMonth, String groupByYear, BigDecimal rewards, BigDecimal totalRewards,
+			BigDecimal yearlyRewards) {
+		super();
+		this.name = name;
+		this.groupByMonth = groupByMonth;
+		this.groupByYear = groupByYear;
+		this.rewards = rewards;
+		this.totalRewards = totalRewards;
+		this.yearlyRewards = yearlyRewards;
+	}
+
 	
 
 	public Rewards(String name, String groupByMonth, String groupByYear, BigDecimal rewards) {
@@ -76,6 +92,14 @@ public class Rewards {
 
 	public void setYearlyRewards(BigDecimal yearlyRewards) {
 		this.yearlyRewards = yearlyRewards;
+	}
+	
+	public BigDecimal getTotalRewards() {
+		return totalRewards;
+	}
+
+	public void setTotalRewards(BigDecimal totalRewards) {
+		this.totalRewards = totalRewards;
 	}
 
 	@Override
